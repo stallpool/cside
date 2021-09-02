@@ -1,0 +1,40 @@
+<html>
+<head>
+   <title>CSIDE - CodeServerIDE</title>
+   <link rel="stylesheet" href="css/clr-ui.min.css">
+</head>
+<body>
+<div class="login-wrapper">
+    <form id="form-login" action="/gitlab/login" method="POST">
+    <div class="login">
+    <section class="title">
+        <h3 class="welcome">Welcome to</h3>
+        CSIDE Cloud-based Development Environment
+    </section>
+    <div class="login-group">
+        <div class="auth-source select">
+            <select id="select-type">
+                <option value="gitlab">Gitlab Access Token</option>
+                <option value="userpass">Local Users</option>
+            </select>
+        </div>
+        <input class="username" name="user" type="text" id="login_username" placeholder="Username">
+        <input class="password" name="pass" type="password" id="login_password" placeholder="Password">
+        <div id="login_error" class="hide"><div class="error active">
+            Invalid username or password
+        </div></div>
+        <button type="submit" class="btn btn-primary" id="btn_signin">SIGN IN</button>
+        <a href="mailto:administractor@cside.nomail" class="signup">contact with administrators</a>
+    </div>
+    </div></form>
+</div>
+<script>
+var loginType = document.querySelector('#select-type');
+var loginForm = document.querySelector('#form-login');
+loginType.addEventListener('change', function (evt) {
+   loginForm.action = '/' + evt.target.value + '/login';
+   console.log(loginForm);
+});
+</script>
+</body>
+</html>

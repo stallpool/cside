@@ -1,0 +1,16 @@
+{
+  "name": "monitor",
+  "version": "1.0.0",
+  "description": "cside service instance monitor",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo 'No test'",
+    "start": "node server.js"
+  },
+  "author": "Seven Lju",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  }
+}

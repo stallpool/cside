@@ -1,0 +1,35 @@
+#!/opt/code-server/lib/node
+
+const i_http = require('http');
+
+const envObj = {};
+process.argv.slice(2).forEach((one) => {
+   if (!one.trim()) return;
+   const i = one.indexOf('=');
+   if (i < 0) {
+      envObj[one] = '';
+      return;
+   }
+   const key = one.substring(0, i).trim();
+   if (!key) return;
+   const val = one.substring(i+1);
+   envObj[key] = val;
+});
+console.log('additional env:');
+console.log(JSON.stringify(envObj));
+
+const req = i_http.request({
+  host: '127.0.0.1',
+  port: 29001,
+  path: '/vscode/start',
+  method: 'POST'
+}, (res) => {
+  res.on('data', (stat) => {
+     console.log(stat.toString());
+  });
+  res.on('end', () => {
+     process.exit(0);
+  });
+});
+req.write(JSON.stringify(envObj));
+req.end();
